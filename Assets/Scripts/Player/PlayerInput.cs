@@ -35,12 +35,30 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LightShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""807b2738-0c51-4487-bbc9-21067abd7321"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HeavyShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""589783d5-e203-4f5b-a5cd-6ad85ccf4822"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""2D Vector"",
-                    ""id"": ""4b77a579-d910-412f-8d38-91b0d52a66fa"",
+                    ""id"": ""b90eb73a-f07b-4d7d-83b2-df10743b6978"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -50,8 +68,30 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""up"",
+                    ""id"": ""59666953-417d-47d0-b155-c922f14a1792"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e17d9b8a-931e-4b04-9b36-fbe26076c3a1"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""left"",
-                    ""id"": ""dc2e7745-08a8-403d-834a-a42a111e934f"",
+                    ""id"": ""27ab04ff-89c3-420c-bbe6-621803624f36"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -62,7 +102,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""d5caa13c-4530-4f52-a8b6-55c23ddbdfd7"",
+                    ""id"": ""16d91345-047e-4680-8a8a-73f367164604"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -70,6 +110,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbfa097e-6753-418a-8ee6-604aafbc5e1d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LightShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76d8459f-0d0d-406d-9549-7e1517496bdf"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HeavyShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -79,6 +141,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_LightShoot = m_Player.FindAction("LightShoot", throwIfNotFound: true);
+        m_Player_HeavyShoot = m_Player.FindAction("HeavyShoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,11 +205,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_LightShoot;
+    private readonly InputAction m_Player_HeavyShoot;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @LightShoot => m_Wrapper.m_Player_LightShoot;
+        public InputAction @HeavyShoot => m_Wrapper.m_Player_HeavyShoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -158,6 +226,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @LightShoot.started += instance.OnLightShoot;
+            @LightShoot.performed += instance.OnLightShoot;
+            @LightShoot.canceled += instance.OnLightShoot;
+            @HeavyShoot.started += instance.OnHeavyShoot;
+            @HeavyShoot.performed += instance.OnHeavyShoot;
+            @HeavyShoot.canceled += instance.OnHeavyShoot;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -165,6 +239,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @LightShoot.started -= instance.OnLightShoot;
+            @LightShoot.performed -= instance.OnLightShoot;
+            @LightShoot.canceled -= instance.OnLightShoot;
+            @HeavyShoot.started -= instance.OnHeavyShoot;
+            @HeavyShoot.performed -= instance.OnHeavyShoot;
+            @HeavyShoot.canceled -= instance.OnHeavyShoot;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -185,5 +265,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnLightShoot(InputAction.CallbackContext context);
+        void OnHeavyShoot(InputAction.CallbackContext context);
     }
 }

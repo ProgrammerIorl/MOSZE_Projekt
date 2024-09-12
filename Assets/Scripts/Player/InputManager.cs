@@ -42,6 +42,14 @@ public class InputManager : MonoBehaviour
     {
         return PlayerInput.Player.Movement.ReadValue<Vector2>();
     }
+    public bool LightShoot()
+    {
+        return PlayerInput.Player.LightShoot.triggered;
+    }
+    public bool HeavyShoot()
+    {
+        return PlayerInput.Player.HeavyShoot.triggered;
+    }
 
 
 }
