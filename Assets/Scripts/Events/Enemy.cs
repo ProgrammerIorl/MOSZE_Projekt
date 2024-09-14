@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject experience;
+    public Rigidbody2D rb;
     /*GameObject eventManagerGameObject;
     EventManager eventManager;
     int id;
     Enemy enemy;*/
-    float health = 1f;
+    float health = 10f;
+    public WeaponScriptableObject weapon;
     /*private void Awake()
     {
         eventManagerGameObject = GameObject.Find("EventManager") as GameObject;
@@ -43,10 +46,20 @@ public class Enemy : MonoBehaviour
     }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
-        health -= 1;
+        if (collision.CompareTag("Projectile")) 
+        { 
+            Destroy(collision.gameObject);
+            health -= 1;
+            
+        }
+        
+        
+        
         if (health <= 0)
         {
+            GameObject exp = Instantiate(experience, transform.position, transform.rotation);
+            rb = exp.GetComponent<Rigidbody2D>();
+            rb.velocity = transform.TransformDirection(Vector3.down * 2);
             Destroy(gameObject);
         }
     }

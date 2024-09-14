@@ -6,17 +6,34 @@ public class PlayerController : MonoBehaviour
 {
     public WeaponScriptableObject lightWeapon;
     public WeaponScriptableObject heavyWeapon;
-    private CharacterController controller;
     private InputManager inputManager;
+    Rigidbody2D rb;
     public Transform cameraTransform;
     Vector2 movement;
-    Vector2 move;
     private float playerSpeed = 5.0f;
+    public float exp = 0;
+    float hp = 3;
     float lastfired;
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("Collide");
+        if (collider.CompareTag("EXP"))
+        {
+            Destroy(collider.gameObject);
+            exp += Random.Range(0, 10);
+        }
+        if (collider.CompareTag("EnemyProjectile"))
+        {
+
+            hp -= collider.GetComponent<WeaponScriptableObject>().damage;
+            Destroy(collider.gameObject);
+        }
+    }
+
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody2D>();
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
     }
@@ -27,9 +44,8 @@ public class PlayerController : MonoBehaviour
         if (inputManager.GetPlayerInput() != Vector2.zero)
         {
             movement = inputManager.GetPlayerInput();
-            move = new Vector3(movement.x, movement.y);
-            controller.Move(playerSpeed * Time.deltaTime * move);
-        }
+            rb.velocity = movement*playerSpeed;
+        }else rb.velocity = Vector2.zero;
         //-----------------------Shooting-------------------
         if (inputManager.LightShoot())
         {
@@ -41,7 +57,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = transform.TransformDirection(Vector3.up * lightWeapon.projectileSpeed);
             }
         }
-        if (inputManager.LightShoot())
+        if (inputManager.HeavyShoot())
         {
             if (Time.time - lastfired > 1 / heavyWeapon.fireRate)
             {

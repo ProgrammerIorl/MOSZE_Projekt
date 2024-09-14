@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    
-       
 
     public Dictionary<int, Enemy> enemyIDs;
     public int enemys = 0;
