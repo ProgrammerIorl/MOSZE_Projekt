@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public WeaponScriptableObject lightWeapon;
     public WeaponScriptableObject heavyWeapon;
+    public WeaponScriptableObject weapon;
     private InputManager inputManager;
     Rigidbody2D rb;
     public Transform cameraTransform;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
             {
                 lastfired = Time.time;
                 GameObject clone = Instantiate(lightWeapon.projectile, transform.position, transform.rotation);
+                clone.GetComponent<Weapon>().weapon = lightWeapon;
                 Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
                 rb.velocity = transform.TransformDirection(Vector3.up * lightWeapon.projectileSpeed);
             }
@@ -63,6 +65,7 @@ public class PlayerController : MonoBehaviour
             {
                 lastfired = Time.time;
                 GameObject clone = Instantiate(heavyWeapon.projectile, transform.position, transform.rotation);
+                clone.GetComponent<Weapon>().weapon = heavyWeapon;
                 Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
                 rb.velocity = transform.TransformDirection(Vector3.up * heavyWeapon.projectileSpeed);
             }

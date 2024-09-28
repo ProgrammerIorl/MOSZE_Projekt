@@ -9,7 +9,7 @@ public class Experience : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             PlayerController pc = collision.collider.GetComponent<PlayerController>();
-            pc.exp += Random.Range(0, 10);
+            pc.exp += 5;
         }
     }
 }

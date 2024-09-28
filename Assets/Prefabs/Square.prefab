@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -7706463972151651566}
   - component: {fileID: -9057393444515446171}
   - component: {fileID: 1123942250051823642}
+  - component: {fileID: 6799476556861369157}
   m_Layer: 0
   m_Name: Square
   m_TagString: Projectile
@@ -171,3 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df2412bd887b13419cf6102c0ebe2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6799476556861369157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636049267473397023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdeb70f2f58fae545962c78255b7ab01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}

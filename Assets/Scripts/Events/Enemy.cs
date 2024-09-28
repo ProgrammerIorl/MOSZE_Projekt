@@ -47,13 +47,13 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Projectile")) 
-        { 
+        {
+            health -= collision.GetComponent<Weapon>().weapon.damage;
             Destroy(collision.gameObject);
-            health -= 1;
+            
             
         }
-        
-        
+
         
         if (health <= 0)
         {

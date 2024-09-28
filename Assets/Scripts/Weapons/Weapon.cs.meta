@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - weapon: {fileID: 11400000, guid: ad6c6cbf5849bd646905e550034d9716, type: 2}
+  - weapon: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
