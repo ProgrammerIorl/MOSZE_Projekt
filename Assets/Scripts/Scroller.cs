@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Scroller : MonoBehaviour
-
-
-
 {
-
     public float scrollSpeed = 0.5f;
     private float offset;
     private Material Mat;
-
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +18,6 @@ public class Scroller : MonoBehaviour
     void Update()
     {
         offset += (Time.deltaTime * scrollSpeed) / 10f;
-        Mat.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+        Mat.SetTextureOffset("_MainTex", new Vector2(0, offset)); // Change here to scroll vertically
     }
 }
