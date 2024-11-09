@@ -15,4 +15,5 @@ public class EntityScriptableObject : ScriptableObject
     public Sprite sprite;
     public WeaponScriptableObject weapon;
     public WeaponScriptableObject heavyweapon;
+    public string characterName;
 }
