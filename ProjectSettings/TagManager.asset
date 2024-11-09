@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - EXP
   - EnemyProjectile
+  - Wall
+  - Hurtable
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

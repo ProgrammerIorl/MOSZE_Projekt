@@ -8,8 +8,8 @@ public class Experience : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            PlayerController pc = collision.collider.GetComponent<PlayerController>();
-            pc.exp += 5;
+            InputManager inputManager = collision.collider.GetComponent<InputManager>();
+            inputManager.exp += 5;
         }
     }
 }

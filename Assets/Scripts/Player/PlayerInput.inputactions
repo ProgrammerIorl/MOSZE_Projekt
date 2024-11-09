@@ -93,7 +93,7 @@
                     "name": "",
                     "id": "cbfa097e-6753-418a-8ee6-604aafbc5e1d",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Hold,Tap",
                     "processors": "",
                     "groups": "",
                     "action": "LightShoot",
