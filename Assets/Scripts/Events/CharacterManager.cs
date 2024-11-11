@@ -54,6 +54,7 @@ public class CharacterManager : MonoBehaviour
         nameText.text = character.characterName;
         Debug.Log(character.sprite);
         image.sprite= character.sprite;
+        
 
     }
     public void LoadScene(string sceneName)
