@@ -9,11 +9,17 @@ public class Enemy : Entity
     float lastfired;
     RaycastHit2D hit;
     LayerMask layerMask = ~0<< 6;
+    private void Awake()
+    {
+        entity = GameManager.Instance.EnemyDatabase.GetCharacter(0);
+    }
     private void Start()
     {
+
+        
         GetComponent<SpriteRenderer>().sprite = entity.sprite;
         health=entity.health;
-
+        GameManager.Instance.AddEnemyToList(gameObject);
     }
     private void Update()
     {
@@ -29,11 +35,12 @@ public class Enemy : Entity
             }
             
         }
+ 
             
     }
     private void Fire() {
         lastfired=Time.time;
-        GameObject clone = Instantiate(entity.weapon.projectile, transform.position, transform.rotation);
+        GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, transform.position, transform.rotation);
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;
         clone.GetComponent<Weapon>().entity = entity;
         Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
@@ -41,7 +48,7 @@ public class Enemy : Entity
     }
     private void OnDestroy()
     {
-        
+        GameManager.Instance.RemoveEnemyFromList(gameObject);
     }
 
 }

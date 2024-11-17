@@ -183,6 +183,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6643140909157513674, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
+      propertyPath: entity
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643140909157513674, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
       propertyPath: layerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -251,6 +255,10 @@ PrefabInstance:
     - target: {fileID: 5505539357506634898, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643140909157513674, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
+      propertyPath: entity
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6643140909157513674, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
       propertyPath: layerMask.m_Bits
@@ -697,6 +705,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6643140909157513674, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
+      propertyPath: entity
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643140909157513674, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
       propertyPath: layerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -706,70 +718,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
---- !u!1 &924668106
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 924668107}
-  m_Layer: 0
-  m_Name: Wall2
-  m_TagString: Wall
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &924668107
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924668106}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.60381603, y: 3.4555569, z: 0.1614244}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1316141239}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1316141238
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1316141239}
-  m_Layer: 0
-  m_Name: Walls
-  m_TagString: Wall
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1316141239
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1316141238}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.60381603, y: 2.0444431, z: -0.1614244}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1846153531}
-  - {fileID: 924668107}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1397393636
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +899,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6643140909157513674, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
+      propertyPath: entity
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643140909157513674, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
       propertyPath: layerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -960,82 +912,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
---- !u!1 &1846153530
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1846153531}
-  m_Layer: 0
-  m_Name: Wall
-  m_TagString: Wall
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1846153531
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846153530}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1316141239}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2030415012
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2030415014}
-  - component: {fileID: 2030415013}
-  m_Layer: 0
-  m_Name: EventManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2030415013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030415012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cec79dda5fe729c49b47d82256951c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemys: 0
---- !u!4 &2030415014
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030415012}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6675034537521448624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1100,12 +976,10 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 6675034537521448624}
-  - {fileID: 2030415014}
   - {fileID: 418155938}
   - {fileID: 394705152}
   - {fileID: 393249230}
   - {fileID: 821239619}
   - {fileID: 300281664}
   - {fileID: 1558609906}
-  - {fileID: 1316141239}
   - {fileID: 1397393641}

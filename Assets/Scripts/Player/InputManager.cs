@@ -34,8 +34,9 @@ public class InputManager : Entity
             _instance = this;
         }
         PlayerInput = new PlayerInput();
-        
+        entity = CharacterManager.Instance.characterDatabase.GetCharacter(CharacterManager.Instance.selectedOption);
     }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +44,7 @@ public class InputManager : Entity
         lastfired = 0;
         GetComponent<SpriteRenderer>().sprite=entity.sprite;
         health=entity.health;
+        
     }
     private void OnEnable()
     {
@@ -56,49 +58,13 @@ public class InputManager : Entity
     {
         return PlayerInput.Player.Movement.ReadValue<Vector2>();
     }
-    /*public void LightShoot()
-    {
-        
-        PlayerInput.Player.LightShoot.performed += context =>
-        {
-           
-
-            // Check if it's either a tap or hold interaction
-            if (context.interaction is TapInteraction || context.interaction is HoldInteraction)
-            {
-               
-
-                // Check the fire rate
-                if (Time.time - lastfired > 1 / lightWeapon.fireRate)
-                {
-                    
-
-                    lastfired = Time.time;
-
-                    // Instantiate the projectile and set properties
-                    GameObject clone = Instantiate(
-                        lightWeapon.projectile,
-                        gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position,
-                        transform.rotation
-                    );
-
-                    clone.GetComponent<Weapon>().weapon = lightWeapon;
-                    clone.GetComponent<SpriteRenderer>().sprite = lightWeapon.sprite;
-
-                    Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
-                    rb.velocity = transform.TransformDirection(Vector3.up * lightWeapon.projectileSpeed);
-                }
-            }
-        };
-    }
-    */
+   
     private bool isShooting = false;
 
     public void LightShoot()
     {
         PlayerInput.Player.LightShoot.started += context =>
         {
-            // Kezdje el a lövést, ha a Hold interaction elindul
             if (context.interaction is HoldInteraction)
             {
                 isShooting = true;
@@ -112,7 +78,6 @@ public class InputManager : Entity
 
         PlayerInput.Player.LightShoot.canceled += context =>
         {
-            // Állítsa le a lövést, ha a Hold interaction befejezõdik
             if (context.interaction is HoldInteraction)
             {
                 isShooting = false;
@@ -122,9 +87,8 @@ public class InputManager : Entity
 
     private void ShootSingle()
     {
-        if (Time.time - lastfired > 1 / entity.weapon.fireRate)
+        if (Time.time - lastfired > 10 / entity.weapon.fireRate)
         {
-            
             ShootProjectile();
         }
     }
@@ -133,7 +97,7 @@ public class InputManager : Entity
     {
         while (isShooting)
         {
-            if (Time.time - lastfired > 1 / entity.weapon.fireRate)
+            if (Time.time - lastfired > 10 / entity.weapon.fireRate)
             {
                 lastfired = Time.time;  
                 ShootProjectile();
@@ -144,8 +108,8 @@ public class InputManager : Entity
 
     private void ShootProjectile()
     {
-        GameObject clone = Instantiate(entity.weapon.projectile,gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position,transform.rotation);
-        clone.GetComponent<Weapon>().entity.weapon = entity.weapon;
+        GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position,transform.rotation);
+        clone.GetComponent<Weapon>().entity = entity;
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;
         clone.GetComponent<Weapon>().entity = entity;
         Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
@@ -158,10 +122,10 @@ public class InputManager : Entity
         {
             if (context.interaction is TapInteraction)
             {
-                if (Time.time - lastfired > 1 /  entity.heavyweapon.fireRate)
+                if (Time.time - lastfired > 10 /  entity.heavyweapon.fireRate)
                 {
                     lastfired = Time.time;
-                    GameObject clone = Instantiate(entity.heavyweapon.projectile, gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position, transform.rotation);
+                    GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position, transform.rotation);
                     clone.GetComponent<Weapon>().entity.weapon = entity.heavyweapon;
                     clone.GetComponent<SpriteRenderer>().sprite = entity.heavyweapon.sprite;
                     Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
@@ -169,21 +133,7 @@ public class InputManager : Entity
                 }
             }
         };
-        PlayerInput.Player.HeavyShoot.performed += context =>
-        {
-            if (context.interaction is HoldInteraction)
-            {
-                if (Time.time - lastfired > 1 / entity.heavyweapon.fireRate)
-                {
-                    lastfired = Time.time;
-                    GameObject clone = Instantiate(entity.heavyweapon.projectile, gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position, transform.rotation);
-                    clone.GetComponent<Weapon>().entity.weapon = entity.heavyweapon;
-                    clone.GetComponent<SpriteRenderer>().sprite = entity.heavyweapon.sprite;
-                    Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
-                    rb.velocity = transform.TransformDirection(Vector3.up * entity.heavyweapon.projectileSpeed);
-                }
-            }
-        };
+        
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {

@@ -1,17 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-
-public class EventManager : MonoBehaviour
+using UnityEngine.Events;
+public static class EventManager
 {
+    public static event UnityAction Save;
+    public static event UnityAction NextStage;
+    public static void OnSave() =>Save?.Invoke();
+    public static void OnNextStage() => NextStage?.Invoke();
 
-    public Dictionary<int, Enemy> enemyIDs;
-    public int enemys = 0;
-    public static event Action<int> EnemyDeathAfterEvent;
-
-    public static void EnemyDeath(int id) {
-        EnemyDeathAfterEvent?.Invoke(id);
-        
-    }
 }

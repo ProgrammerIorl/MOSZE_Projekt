@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b373eab11cec4fb41fb7caa273ca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 11400000, guid: e4a5e344e6e5a454b820211b981878c4, type: 2}
+  entity: {fileID: 0}
   health: 0
   cameraTransform: {fileID: 0}
   exp: 0
