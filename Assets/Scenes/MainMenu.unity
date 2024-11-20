@@ -851,10 +851,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1165397729
+=======
+  WeaponGameObject: {fileID: 1636049267473397023, guid: 3e8261fabf48efa459d332670ab068e0, type: 3}
+  EnemyDatabase: {fileID: 0}
+  stageNumber: 0
+  roundNumber: 0
+  coinNumber: 0
+  RoundEnemy: {fileID: 0}
+  enemies: []
+  enemyDatabases:
+  - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
+  - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
+  - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
+  - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
+--- !u!4 &1044244352
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -982,9 +998,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+<<<<<<< Updated upstream
       - m_Target: {fileID: 120464315}
         m_TargetAssemblyTypeName: GameMenu, Assembly-CSharp
         m_MethodName: SaveData
+=======
+      - m_Target: {fileID: 1536539198}
+        m_TargetAssemblyTypeName: SaveSystem, Assembly-CSharp
+        m_MethodName: SaveByXML
+>>>>>>> Stashed changes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
