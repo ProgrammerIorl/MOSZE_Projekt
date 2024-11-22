@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7b283b76142dfe49911b7d3bf9dbf43, type: 3}
-  m_Name: HolyWater
+  m_Script: {fileID: 11500000, guid: 608794c8c4cae64489e880d5044b8b45, type: 3}
+  m_Name: Coin
   m_EditorClassIdentifier: 
-  damage: 200
-  projectileSpeed: 5
-  fireRate: 100
-  sprite: {fileID: 21300000, guid: 69e22252881d6df4ca9cfa6b33c2716c, type: 3}
+  entityType: 3
+  health: 0
+  sprite: {fileID: 0}
+  weapon: {fileID: 0}
+  heavyweapon: {fileID: 0}
+  characterName: 

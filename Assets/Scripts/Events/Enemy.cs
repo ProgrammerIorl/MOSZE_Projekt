@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    public GameObject experience;
+
     public Rigidbody2D rb;
     float lastfired;
     RaycastHit2D hit;
@@ -15,8 +15,6 @@ public class Enemy : Entity
     }
     private void Start()
     {
-
-        
         GetComponent<SpriteRenderer>().sprite = entity.sprite;
         health=entity.health;
         GameManager.Instance.AddEnemyToList(gameObject);
@@ -33,10 +31,7 @@ public class Enemy : Entity
                     Fire();
                 }
             }
-            
-        }
- 
-            
+        }     
     }
     private void Fire() {
         lastfired=Time.time;
@@ -48,6 +43,9 @@ public class Enemy : Entity
     }
     private void OnDestroy()
     {
+        GameObject clone = Instantiate(GameManager.Instance.coin, transform.position, transform.rotation);
+        Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
+        rb.velocity = transform.TransformDirection(Vector3.down * 3);
         GameManager.Instance.RemoveEnemyFromList(gameObject);
     }
 

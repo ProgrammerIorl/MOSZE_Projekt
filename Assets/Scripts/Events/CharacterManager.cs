@@ -58,9 +58,6 @@ public class CharacterManager : MonoBehaviour
         
 
     }
-    public void LoadScene()
-    {
-        SceneManager.LoadScene("Stage1");
-    }
+
 }
 

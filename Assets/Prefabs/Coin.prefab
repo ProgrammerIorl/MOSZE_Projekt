@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1293753809566862667}
   - component: {fileID: 3418986980056056534}
   - component: {fileID: -7089641760090825132}
+  - component: {fileID: 123635173444509697}
   m_Layer: 0
-  m_Name: EXP
+  m_Name: Coin
   m_TagString: EXP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,3 +149,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &123635173444509697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624822163266296025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0351f759d86bc084bb413b669c058b4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 11400000, guid: 644b06a7384cd924295e449f91f9d905, type: 2}
+  health: 0

@@ -18,9 +18,10 @@ public class Weapon : MonoBehaviour
             {
                 collisionEntity.health -= entity.weapon.damage;
                 Destroy(gameObject);
-                if (collisionEntity.health <= 0) {
+                if (collisionEntity.health <= 0 && collisionEntity.entity.entityType!=EntityScriptableObject.EntityType.Wall && collisionEntity.entity.entityType != EntityScriptableObject.EntityType.Droppable) {
                     Destroy(collisionEntity.gameObject);
                 }
+                Destroy(gameObject);
             }
             
         }

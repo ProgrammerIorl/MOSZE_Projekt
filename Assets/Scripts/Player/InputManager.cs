@@ -46,6 +46,32 @@ public class InputManager : Entity
         health=entity.health;
         
     }
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+
+        if (collider.CompareTag("EXP"))
+        {
+            Destroy(collider.gameObject);
+            exp += 5;
+        }
+
+    }
+
+    void Update()
+    {
+
+        LightShoot();
+        HeavyShoot();
+    }
+    private void FixedUpdate()
+    {
+        if (GetPlayerInput() != Vector2.zero)
+        {
+            movement = GetPlayerInput();
+            rb.velocity = movement * playerSpeed;
+        }
+        else rb.velocity = Vector2.zero;
+    }
     private void OnEnable()
     {
         PlayerInput.Enable();
@@ -125,7 +151,7 @@ public class InputManager : Entity
                 if (Time.time - lastfired > 10 /  entity.heavyweapon.fireRate)
                 {
                     lastfired = Time.time;
-                    GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position, transform.rotation);
+                    GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("HeavyWeaponTransform").position, transform.rotation);
                     clone.GetComponent<Weapon>().entity.weapon = entity.heavyweapon;
                     clone.GetComponent<SpriteRenderer>().sprite = entity.heavyweapon.sprite;
                     Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
@@ -135,29 +161,7 @@ public class InputManager : Entity
         };
         
     }
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-
-        if (collider.CompareTag("EXP"))
-        {
-            Destroy(collider.gameObject);
-            exp += Random.Range(0, 10);
-        }
-
-    }
-
-    void Update()
-    {
-        //-----------------------Movement-------------------
-        if (GetPlayerInput() != Vector2.zero)
-        {
-            movement = GetPlayerInput();
-            rb.velocity = movement * playerSpeed;
-        }
-        else rb.velocity = Vector2.zero;
-        LightShoot();
-        HeavyShoot();
-    }
+    
 
 
 
