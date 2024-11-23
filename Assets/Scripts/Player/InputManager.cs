@@ -15,6 +15,9 @@ public class InputManager : Entity
     private float playerSpeed = 5.0f;
     public float exp = 0;
     float lastfired;
+    private bool isShooting = false;
+    float heavylastfired;
+    public GameObject eventSystem;
     public static InputManager Instance
     {
         get
@@ -59,9 +62,18 @@ public class InputManager : Entity
 
     void Update()
     {
-
-        LightShoot();
-        HeavyShoot();
+        if (Pause())
+        {
+            EventManager.OnPause();
+        }
+        if (GameManager.Instance.isPaused==false)
+        {
+            LightShoot();
+            HeavyShoot();
+        }
+        
+        
+        
     }
     private void FixedUpdate()
     {
@@ -84,22 +96,30 @@ public class InputManager : Entity
     {
         return PlayerInput.Player.Movement.ReadValue<Vector2>();
     }
+    public bool Pause() 
+    {
+        return PlayerInput.Player.Pause.triggered;
+    }
    
-    private bool isShooting = false;
+    
 
     public void LightShoot()
     {
-        PlayerInput.Player.LightShoot.started += context =>
+        
+            PlayerInput.Player.LightShoot.started += context =>
         {
-            if (context.interaction is HoldInteraction)
-            {
-                isShooting = true;
-                StartCoroutine(ShootContinuously());
-            }
-            else if (context.interaction is TapInteraction)
-            {
-                ShootSingle();
-            }
+            
+                if (context.interaction is HoldInteraction)
+                {
+                    isShooting = true;
+                    StartCoroutine(ShootContinuously());
+                }
+                else if (context.interaction is TapInteraction)
+                {
+                    ShootSingle();
+                }
+            
+            
         };
 
         PlayerInput.Player.LightShoot.canceled += context =>
@@ -109,6 +129,7 @@ public class InputManager : Entity
                 isShooting = false;
             }
         };
+        
     }
 
     private void ShootSingle()
@@ -137,21 +158,25 @@ public class InputManager : Entity
         GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position,transform.rotation);
         clone.GetComponent<Weapon>().entity = entity;
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;
-        clone.GetComponent<Weapon>().entity = entity;
         Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
         rb.velocity = transform.TransformDirection(Vector3.up * entity.weapon.projectileSpeed);
     }
 
     public void HeavyShoot()
     {
-        PlayerInput.Player.HeavyShoot.performed += context =>
+        
+            PlayerInput.Player.HeavyShoot.performed += context =>
         {
+            Debug.Log("HeavyFired");
             if (context.interaction is TapInteraction)
             {
-                if (Time.time - lastfired > 10 /  entity.heavyweapon.fireRate)
+                Debug.Log("HeavyFired");
+                if (Time.time - heavylastfired > 10 / entity.heavyweapon.fireRate)
                 {
-                    lastfired = Time.time;
+                    Debug.Log("HeavyFired2");
+                    heavylastfired = Time.time;
                     GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("HeavyWeaponTransform").position, transform.rotation);
+                    clone.GetComponent<Weapon>().entity = entity;
                     clone.GetComponent<Weapon>().entity.weapon = entity.heavyweapon;
                     clone.GetComponent<SpriteRenderer>().sprite = entity.heavyweapon.sprite;
                     Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();

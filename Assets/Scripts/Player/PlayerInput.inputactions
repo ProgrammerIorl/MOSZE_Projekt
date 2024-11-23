@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "3a645b61-1a42-4bb6-9b3f-91dcc92c8d0f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -104,10 +113,21 @@
                     "name": "",
                     "id": "76d8459f-0d0d-406d-9549-7e1517496bdf",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
+                    "interactions": "Tap(duration=0.1)",
                     "processors": "",
                     "groups": "",
                     "action": "HeavyShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c4d6828-96cd-4b3d-84a6-47418bce977e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

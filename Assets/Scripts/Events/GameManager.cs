@@ -13,8 +13,21 @@ public class GameManager : MonoBehaviour
     public int roundNumber=0;
     public int coinNumber = 0;
     public EntityScriptableObject RoundEnemy;
+    public bool isPaused = false;
+    public GameObject InGameMenu;
+
     public List<GameObject> enemies = new ();
     public List<CharacterDatabase> enemyDatabases;
+   
+
+    private void OnEnable()
+    {
+        EventManager.Pause += PauseResume;
+    }
+    private void OnDisable()
+    {
+        EventManager.Pause -= PauseResume;
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -40,6 +53,25 @@ public class GameManager : MonoBehaviour
     {
         roundNumber++;
         RoundEnemy =EnemyDatabase.GetCharacter(roundNumber);
+        
+    }
+    
+    public void PauseResume()
+    {
+        if (isPaused == true)
+        {
+            isPaused = false;
+            Time.timeScale = 1.0f;
+            InGameMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (isPaused == false)
+        {
+            isPaused = true;
+            Time.timeScale = 0.0f;
+            InGameMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     public void NextStage()
     {
