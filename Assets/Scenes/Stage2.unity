@@ -347,6 +347,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
+<<<<<<< Updated upstream
 --- !u!1 &418155935
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +426,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +796,11 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< Updated upstream
   - {fileID: 2100000, guid: bff3fa4885b17c746bbc7feaabe15ff6, type: 2}
+=======
+  - {fileID: 2100000, guid: 8689f0635fd267340a7979a46c6e4a6a, type: 2}
+>>>>>>> Stashed changes
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -832,8 +839,13 @@ Transform:
   m_GameObject: {fileID: 1397393636}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: -0.0552, y: 0, z: 0}
   m_LocalScale: {x: 1.7611787, y: 1, z: 1}
+=======
+  m_LocalPosition: {x: -0.0323, y: 0, z: 0}
+  m_LocalScale: {x: 1.7841456, y: 1, z: 1}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -976,7 +988,10 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 6675034537521448624}
+<<<<<<< Updated upstream
   - {fileID: 418155938}
+=======
+>>>>>>> Stashed changes
   - {fileID: 394705152}
   - {fileID: 393249230}
   - {fileID: 821239619}
