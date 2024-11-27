@@ -33,7 +33,7 @@ public class Enemy : Entity
             }
         }     
     }
-    private void Fire() {
+    public void Fire() {
         lastfired=Time.time;
         GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, transform.position, transform.rotation);
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;

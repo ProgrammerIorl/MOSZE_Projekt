@@ -15,9 +15,9 @@ public class InputManager : Entity
     private float playerSpeed = 5.0f;
     public float exp = 0;
     float lastfired;
-    private bool isShooting = false;
+    public bool isShooting = false;
     float heavylastfired;
-    public GameObject eventSystem;
+    
     public static InputManager Instance
     {
         get
