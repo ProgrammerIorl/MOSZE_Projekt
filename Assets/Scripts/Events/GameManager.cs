@@ -44,25 +44,10 @@ public class GameManager : MonoBehaviour
         EventManager.CoinCollected += EventManagerCoinCounterChange;
         
     }
-    public void Upgrade(int id)
-    {
-        int coinsAfterUpgrade = 5 * timesUpgraded * stageNumber;
-        Debug.Log("Upgraded: " + id);
-        upgrades[id] += 1;
-        if(coinNumber- coinsAfterUpgrade > 0) 
-        {
-            coinNumber -= coinsAfterUpgrade;
-            timesUpgraded++;
-            EventManagerCoinCounterChange();
-            EventManager.OnUpgrade();
-        }
-        
-        
-    }
+    
     private void OnDisable()
     {
         EventManager.Pause -= PauseResume;
-        EventManager.StageEnd -= NextStage;
         EventManager.CoinCollected -= EventManagerCoinCounterChange;
         EventManager.CoinCollected -= EventManagerCoinAdd;
     }
@@ -88,6 +73,21 @@ public class GameManager : MonoBehaviour
     {
         GameManager.Instance.coinNumber += 1 * roundNumber * stageNumber;
         
+    }
+    public void Upgrade(int id)
+    {
+        int coinsAfterUpgrade = 5 * timesUpgraded * stageNumber;
+        Debug.Log("Upgraded: " + id);
+        upgrades[id] += 1;
+        if (coinNumber - coinsAfterUpgrade > 0)
+        {
+            coinNumber -= coinsAfterUpgrade;
+            timesUpgraded++;
+            EventManagerCoinCounterChange();
+            EventManager.OnUpgrade();
+        }
+
+
     }
     private void Update()
     {
@@ -118,41 +118,45 @@ public class GameManager : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
         NextRound();
     }
     public void StageEnd() 
     {
-        StartCoroutine(Wait());
+        Wait();
+        
     }
-    public IEnumerator Wait() 
+    public void Wait() 
     {
-        yield return new WaitForSeconds(5);
         StageEndScreen.SetActive(true);
         Time.timeScale = 0.0f;
-        isRoundEnded = false;
-        roundNumber = 0;
     }
-    public void NextStage()
-    {
-        stageNumber++;
-        SceneManager.LoadScene("Stage" + stageNumber);
-        EnemyDatabase = enemyDatabases[stageNumber - 1];
-        SaveByXML();
-    }
+    
     public void NextRound()
     {
-        Time.timeScale = 1.0f;
+        
         roundNumber++;
         SpawnPoint = GameObject.Find("SpawnPoint");
         RoundEnemy = EnemyDatabase.GetCharacter(roundNumber-1);
         SpawnEnemies();
-        isRoundEnded=false;
+        isRoundEnded = false;
+
+    }
+    public void NextStage()
+    {
+        StageEndScreen.SetActive(false);
+        Time.timeScale = 1.0f;
+        stageNumber++;
+        roundNumber = 0;
+        isRoundEnded = false;
+        SceneManager.LoadScene("Stage" + stageNumber);
+        EnemyDatabase = enemyDatabases[stageNumber - 1];
+        SaveByXML();
     }
     public void StartNewGame()
     {
         stageNumber = 0;
         stageNumber++;
+        roundNumber = 0;
         coinNumber = 0;
         SceneManager.LoadScene("Stage" + stageNumber);
         EnemyDatabase = enemyDatabases[stageNumber - 1];
@@ -182,8 +186,6 @@ public class GameManager : MonoBehaviour
             Vector2 coords = new(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y-1.5f);
             Instantiate(Boss, coords, transform.rotation);
             
-            
-
         }
         
         
@@ -195,14 +197,14 @@ public class GameManager : MonoBehaviour
             isPaused = false;
             Time.timeScale = 1.0f;
             InGameMenu.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
+            
         }
         else if (isPaused == false)
         {
             isPaused = true;
             Time.timeScale = 0.0f;
             InGameMenu.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
+            
         }
     }
     

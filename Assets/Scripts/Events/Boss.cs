@@ -13,6 +13,7 @@ public class Boss : Enemy
     {
         transform.localScale = new Vector2(5, 5);
         GetComponent<Boss>().health = entity.health * GameManager.Instance.stageNumber * GameManager.Instance.roundNumber * 10;
+        GameManager.Instance.AddEnemyToList(gameObject);
         rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
