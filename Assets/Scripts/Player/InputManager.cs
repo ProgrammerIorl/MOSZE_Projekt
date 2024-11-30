@@ -12,8 +12,7 @@ public class InputManager : Entity
     Rigidbody2D rb;
     public Transform cameraTransform;
     Vector2 movement;
-    private float playerSpeed = 5.0f;
-    public float exp = 0;
+    private readonly float playerSpeed = 7.0f;
     float lastfired;
     public bool isShooting = false;
     float heavylastfired;
@@ -51,13 +50,15 @@ public class InputManager : Entity
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
-
-        if (collider.CompareTag("EXP"))
-        {
-            Destroy(collider.gameObject);
-            exp += 5;
+        
+        if (collider.TryGetComponent<Entity>(out var coin)) {
+            if (coin.entity.entityType == EntityScriptableObject.EntityType.Droppable)
+            {
+                Debug.Log("Collision Coin");
+                EventManager.OnCoinCollected();
+                Destroy(collider.gameObject);
+            }
         }
-
     }
 
     void Update()
@@ -144,7 +145,7 @@ public class InputManager : Entity
     {
         while (isShooting)
         {
-            if (Time.time - lastfired > 10 / entity.weapon.fireRate)
+            if (Time.time - lastfired > 10 / entity.weapon.fireRate * GameManager.Instance.upgrades[1])
             {
                 lastfired = Time.time;  
                 ShootProjectile();
@@ -158,6 +159,7 @@ public class InputManager : Entity
         GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position,transform.rotation);
         clone.GetComponent<Weapon>().entity = entity;
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;
+        clone.GetComponent<Weapon>().damage = entity.heavyweapon.damage*GameManager.Instance.upgrades[0];
         Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
         rb.velocity = transform.TransformDirection(Vector3.up * entity.weapon.projectileSpeed);
     }
@@ -167,20 +169,21 @@ public class InputManager : Entity
         
             PlayerInput.Player.HeavyShoot.performed += context =>
         {
-            Debug.Log("HeavyFired");
+
             if (context.interaction is TapInteraction)
             {
-                Debug.Log("HeavyFired");
+
                 if (Time.time - heavylastfired > 10 / entity.heavyweapon.fireRate)
                 {
-                    Debug.Log("HeavyFired2");
                     heavylastfired = Time.time;
                     GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("HeavyWeaponTransform").position, transform.rotation);
-                    clone.GetComponent<Weapon>().entity = entity;
-                    clone.GetComponent<Weapon>().entity.weapon = entity.heavyweapon;
+                    Weapon weaponGet = clone.GetComponent<Weapon>();
+                    weaponGet.entity = entity;
+                    weaponGet.entity.heavyweapon = entity.heavyweapon;
+                    weaponGet.damage = entity.heavyweapon.damage;
                     clone.GetComponent<SpriteRenderer>().sprite = entity.heavyweapon.sprite;
                     Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
-                    rb.velocity = transform.TransformDirection(Vector3.up * entity.heavyweapon.projectileSpeed);
+                    rb.velocity = transform.TransformDirection(entity.heavyweapon.projectileSpeed * GameManager.Instance.upgrades[2] * Vector3.up);
                 }
             }
         };

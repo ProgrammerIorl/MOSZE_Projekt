@@ -135,7 +135,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""76d8459f-0d0d-406d-9549-7e1517496bdf"",
                     ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": ""Tap(duration=0.1)"",
+                    ""interactions"": ""Tap(duration=0.4,pressPoint=0.1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""HeavyShoot"",

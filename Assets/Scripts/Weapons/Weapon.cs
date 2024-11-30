@@ -7,23 +7,27 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public EntityScriptableObject entity;
+    public float damage;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Entity collisionEntity = collision.GetComponent<Entity>();
-        if (collisionEntity != null) 
+        if (collision.TryGetComponent<Entity>(out var collisionEntity)) 
         {
-            if (collisionEntity.entity.entityType != entity.entityType)
+            if (collisionEntity.entity.entityType == EntityScriptableObject.EntityType.Player && entity.entityType== EntityScriptableObject.EntityType.Enemy)
             {
-                collisionEntity.health -= entity.weapon.damage;
-                Destroy(gameObject);
-                if (collisionEntity.health <= 0 && collisionEntity.entity.entityType!=EntityScriptableObject.EntityType.Wall && collisionEntity.entity.entityType != EntityScriptableObject.EntityType.Droppable) {
-                    Destroy(collisionEntity.gameObject);
-                }
+                collisionEntity.health -= damage;
                 Destroy(gameObject);
             }
-            
+            if (collisionEntity.entity.entityType == EntityScriptableObject.EntityType.Enemy && entity.entityType == EntityScriptableObject.EntityType.Player)
+            {
+                collisionEntity.health -= damage;
+                Destroy(gameObject);
+            }
+            if (collisionEntity.entity.entityType ==  EntityScriptableObject.EntityType.Wall) 
+            {
+                Destroy(gameObject);
+            }
         }
         
     }
