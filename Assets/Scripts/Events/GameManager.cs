@@ -111,6 +111,8 @@ public class GameManager : MonoBehaviour
             isRoundEnded = true;
         }
 
+        
+
     }
     public void AddEnemyToList(GameObject gameObject)
     {
@@ -122,8 +124,16 @@ public class GameManager : MonoBehaviour
     }
     public void StageEnd() 
     {
-        Wait();
         
+        if (stageNumber == 4)
+        {
+            Endgame();
+        }
+        else {
+            Wait();
+        }
+
+
     }
     public void Wait() 
     {
@@ -143,14 +153,20 @@ public class GameManager : MonoBehaviour
     }
     public void NextStage()
     {
-        StageEndScreen.SetActive(false);
-        Time.timeScale = 1.0f;
-        stageNumber++;
-        roundNumber = 0;
-        isRoundEnded = false;
-        SceneManager.LoadScene("Stage" + stageNumber);
-        EnemyDatabase = enemyDatabases[stageNumber - 1];
-        SaveByXML();
+        
+        
+        
+            StageEndScreen.SetActive(false);
+            Time.timeScale = 1.0f;
+            stageNumber++;
+            roundNumber = 0;
+            isRoundEnded = false;
+            SceneManager.LoadScene("Stage" + stageNumber);
+            EnemyDatabase = enemyDatabases[stageNumber - 1];
+            SaveByXML();
+        
+        
+        
     }
     public void StartNewGame()
     {
@@ -267,6 +283,13 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("XML FILED SAVED");
         }
+    }
+    public void Endgame() {
+
+        EventManager.OnGameEnd();
+
+
+    
     }
     public void QuitGame()
     {
