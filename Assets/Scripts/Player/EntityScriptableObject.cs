@@ -8,7 +8,8 @@ public class EntityScriptableObject : ScriptableObject
     {
         Enemy,
         Player,
-        Wall
+        Wall,
+        Droppable
     }
     public EntityType entityType;
     public float health;
