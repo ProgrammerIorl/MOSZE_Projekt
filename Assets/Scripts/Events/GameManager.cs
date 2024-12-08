@@ -14,13 +14,13 @@ public class GameManager : MonoBehaviour
     public GameObject SpawnPoint;
     public static GameManager Instance;
     public CharacterDatabase EnemyDatabase;
-    public int stageNumber=0;
-    public int roundNumber=0;
+    public int stageNumber = 0;
+    public int roundNumber = 0;
     public int coinNumber = 0;
     public int timesUpgraded = 0;
     public EntityScriptableObject RoundEnemy;
     public bool isPaused = false;
-    public bool isRoundEnded = false;  
+    public bool isRoundEnded = false;
     public GameObject InGameMenu;
     public GameObject StageEndScreen;
     public GameObject CoinCounter;
@@ -31,9 +31,9 @@ public class GameManager : MonoBehaviour
         { 1, 1},
         { 2, 1}
     };
-    public List<GameObject> enemies = new ();
+    public List<GameObject> enemies = new();
     public List<CharacterDatabase> enemyDatabases;
-    
+
 
     private void OnEnable()
     {
@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
         EventManager.StageEnd += StageEnd;
         EventManager.CoinCollected += EventManagerCoinAdd;
         EventManager.CoinCollected += EventManagerCoinCounterChange;
-        
+
     }
-    
+
     private void OnDisable()
     {
         EventManager.Pause -= PauseResume;
@@ -62,17 +62,17 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
     }
 
-    public void EventManagerCoinCounterChange() 
+    public void EventManagerCoinCounterChange()
     {
         CoinCounter.GetComponent<TextMeshProUGUI>().text = coinNumber.ToString();
     }
     public void EventManagerCoinAdd()
     {
         GameManager.Instance.coinNumber += 1 * roundNumber * stageNumber;
-        
+
     }
     public void Upgrade(int id)
     {
@@ -103,13 +103,15 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void RemoveEnemyFromList(GameObject gameObject) 
+    public void RemoveEnemyFromList(GameObject gameObject)
     {
         enemies.Remove(gameObject);
         if (enemies.Count == 0 && roundNumber <= 4)
         {
             isRoundEnded = true;
         }
+
+
 
     }
     public void AddEnemyToList(GameObject gameObject)
@@ -120,29 +122,41 @@ public class GameManager : MonoBehaviour
     {
         NextRound();
     }
-    public void StageEnd() 
+    public void StageEnd()
     {
-        Wait();
-        
+
+        if (stageNumber == 4)
+        {
+            Endgame();
+        }
+        else
+        {
+            Wait();
+        }
+
+
     }
-    public void Wait() 
+    public void Wait()
     {
         StageEndScreen.SetActive(true);
         Time.timeScale = 0.0f;
     }
-    
+
     public void NextRound()
     {
-        
+
         roundNumber++;
         SpawnPoint = GameObject.Find("SpawnPoint");
-        RoundEnemy = EnemyDatabase.GetCharacter(roundNumber-1);
+        RoundEnemy = EnemyDatabase.GetCharacter(roundNumber - 1);
         SpawnEnemies();
         isRoundEnded = false;
 
     }
     public void NextStage()
     {
+
+
+
         StageEndScreen.SetActive(false);
         Time.timeScale = 1.0f;
         stageNumber++;
@@ -151,6 +165,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Stage" + stageNumber);
         EnemyDatabase = enemyDatabases[stageNumber - 1];
         SaveByXML();
+
+
+
     }
     public void StartNewGame()
     {
@@ -162,7 +179,7 @@ public class GameManager : MonoBehaviour
         EnemyDatabase = enemyDatabases[stageNumber - 1];
         SaveByXML();
     }
-    public void SpawnEnemies() 
+    public void SpawnEnemies()
     {
         if (roundNumber <= 3)
         {
@@ -170,12 +187,12 @@ public class GameManager : MonoBehaviour
             {
                 for (int j = 0; j < roundNumber; j++)
                 {
-                    Vector2 coords = new(SpawnPoint.transform.position.x+i*2, SpawnPoint.transform.position.y - j);
-                    GameObject enemy =Instantiate(Enemy,coords,transform.rotation);
-                    enemy.GetComponent<Enemy>().health=RoundEnemy.health*i*stageNumber;
+                    Vector2 coords = new(SpawnPoint.transform.position.x + i * 2, SpawnPoint.transform.position.y - j);
+                    GameObject enemy = Instantiate(Enemy, coords, transform.rotation);
+                    enemy.GetComponent<Enemy>().health = RoundEnemy.health * i * stageNumber;
                     Debug.Log("Instantiated");
-                    
-                    
+
+
                 }
 
             }
@@ -183,12 +200,12 @@ public class GameManager : MonoBehaviour
         else if (roundNumber == 4)
         {
             Debug.Log("Instantiated");
-            Vector2 coords = new(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y-1.5f);
+            Vector2 coords = new(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y - 1.5f);
             Instantiate(Boss, coords, transform.rotation);
-            
+
         }
-        
-        
+
+
     }
     public void PauseResume()
     {
@@ -197,17 +214,17 @@ public class GameManager : MonoBehaviour
             isPaused = false;
             Time.timeScale = 1.0f;
             InGameMenu.SetActive(false);
-            
+
         }
         else if (isPaused == false)
         {
             isPaused = true;
             Time.timeScale = 0.0f;
             InGameMenu.SetActive(true);
-            
+
         }
     }
-    
+
 
     public void LoadByXML()
     {
@@ -267,6 +284,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("XML FILED SAVED");
         }
+    }
+    public void Endgame()
+    {
+
+        EventManager.OnGameEnd();
+
+
+
     }
     public void QuitGame()
     {
