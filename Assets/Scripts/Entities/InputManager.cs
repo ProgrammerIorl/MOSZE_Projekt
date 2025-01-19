@@ -135,7 +135,7 @@ public class InputManager : Entity
 
     private void ShootSingle()
     {
-        if (Time.time - lastfired > 10 / entity.weapon.fireRate)
+        if (Time.time - lastfired > 10 / entity.weapon.fireRate/ GameManager.Instance.upgrades[1])
         {
             ShootProjectile();
         }
@@ -145,7 +145,7 @@ public class InputManager : Entity
     {
         while (isShooting)
         {
-            if (Time.time - lastfired > 10 / entity.weapon.fireRate * GameManager.Instance.upgrades[1])
+            if (Time.time - lastfired > 10 / entity.weapon.fireRate / GameManager.Instance.upgrades[1])
             {
                 lastfired = Time.time;  
                 ShootProjectile();
@@ -159,9 +159,9 @@ public class InputManager : Entity
         GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("LightWeaponTransform").position,transform.rotation);
         clone.GetComponent<Weapon>().entity = entity;
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;
-        clone.GetComponent<Weapon>().damage = entity.heavyweapon.damage*GameManager.Instance.upgrades[0];
+        clone.GetComponent<Weapon>().damage = entity.weapon.damage*GameManager.Instance.upgrades[0];
         Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
-        rb.velocity = transform.TransformDirection(Vector3.up * entity.weapon.projectileSpeed);
+        rb.velocity = transform.TransformDirection(Vector3.up * entity.weapon.projectileSpeed * GameManager.Instance.upgrades[2]);
     }
 
     public void HeavyShoot()
@@ -173,14 +173,14 @@ public class InputManager : Entity
             if (context.interaction is TapInteraction)
             {
 
-                if (Time.time - heavylastfired > 10 / entity.heavyweapon.fireRate)
+                if (Time.time - heavylastfired > 10 / entity.heavyweapon.fireRate / GameManager.Instance.upgrades[1])
                 {
                     heavylastfired = Time.time;
                     GameObject clone = Instantiate(GameManager.Instance.WeaponGameObject, gameObject.GetComponentInChildren<Transform>().Find("HeavyWeaponTransform").position, transform.rotation);
                     Weapon weaponGet = clone.GetComponent<Weapon>();
                     weaponGet.entity = entity;
                     weaponGet.entity.heavyweapon = entity.heavyweapon;
-                    weaponGet.damage = entity.heavyweapon.damage;
+                    weaponGet.damage = entity.heavyweapon.damage * GameManager.Instance.upgrades[0];
                     clone.GetComponent<SpriteRenderer>().sprite = entity.heavyweapon.sprite;
                     Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
                     rb.velocity = transform.TransformDirection(entity.heavyweapon.projectileSpeed * GameManager.Instance.upgrades[2] * Vector3.up);

@@ -7,7 +7,6 @@ public class CharacterDatabase : ScriptableObject
 {
 
     public List<EntityScriptableObject> character;
-    public Sprite background;
     public int CharacterCount
     {
         get

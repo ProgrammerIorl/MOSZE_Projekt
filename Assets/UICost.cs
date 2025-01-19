@@ -7,14 +7,20 @@ public class UICost : MonoBehaviour
 {
     private void OnEnable()
     {
-        EventManager.Upgrade += EvenManagerUpgrade;
+        EventManager.Upgrade += EventManagerUpgrade;
+        EventManager.GameEnd += EventManagerGameEnd;
     }
     private void OnDisable()
     {
-        EventManager.Upgrade -= EvenManagerUpgrade;
+        EventManager.Upgrade -= EventManagerUpgrade;
+        EventManager.GameEnd -= EventManagerGameEnd;
     }
-    private void EvenManagerUpgrade() 
+    private void EventManagerUpgrade() 
     {
         GetComponent<TextMeshProUGUI>().text = "Cost: " + 5 * GameManager.Instance.timesUpgraded * GameManager.Instance.stageNumber;
+    }
+    private void EventManagerGameEnd()
+    {
+        GetComponent<TextMeshProUGUI>().text = "Cost: ";
     }
 }

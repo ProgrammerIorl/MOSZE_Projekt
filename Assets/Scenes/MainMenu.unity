@@ -2037,7 +2037,7 @@ GameObject:
   - component: {fileID: 733611575}
   - component: {fileID: 733611574}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2107,7 +2107,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1821996931}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -2123,6 +2123,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1044244351}
+        m_TargetAssemblyTypeName: GameManager, Game
+        m_MethodName: MainMenuLoadScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3442,7 +3454,7 @@ MonoBehaviour:
   WeaponGameObject: {fileID: 1636049267473397023, guid: 3e8261fabf48efa459d332670ab068e0, type: 3}
   Enemy: {fileID: 795612548349319606, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
   SpawnPoint: {fileID: 0}
-  EnemyDatabase: {fileID: 0}
+  EnemyDatabase: {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
   stageNumber: 0
   roundNumber: 0
   coinNumber: 0
@@ -3457,9 +3469,9 @@ MonoBehaviour:
   enemies: []
   enemyDatabases:
   - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
-  - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
-  - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
-  - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
+  - {fileID: 11400000, guid: 765e7a7e98828df48b328b749793137a, type: 2}
+  - {fileID: 11400000, guid: 27405c845971713418383375d64b0ee2, type: 2}
+  - {fileID: 11400000, guid: 2ca831d09efe323448c63b5ab51abaa2, type: 2}
 --- !u!4 &1044244352
 Transform:
   m_ObjectHideFlags: 0
@@ -6573,7 +6585,7 @@ GameObject:
   - component: {fileID: 2086460184}
   - component: {fileID: 2086460183}
   m_Layer: 5
-  m_Name: Button
+  m_Name: QuitGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6643,7 +6655,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1044244351}
         m_TargetAssemblyTypeName: GameManager, Game
         m_MethodName: QuitGame
         m_Mode: 1
@@ -6845,7 +6857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384689158325360739, guid: 62276a76ea6c72d4cab0fc4dad1e7e56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.39
+      value: -8.58
       objectReference: {fileID: 0}
     - target: {fileID: 384689158325360739, guid: 62276a76ea6c72d4cab0fc4dad1e7e56, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6913,7 +6925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 384689158325360739, guid: 62276a76ea6c72d4cab0fc4dad1e7e56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.6
+      value: 7.9
       objectReference: {fileID: 0}
     - target: {fileID: 384689158325360739, guid: 62276a76ea6c72d4cab0fc4dad1e7e56, type: 3}
       propertyPath: m_LocalPosition.z

@@ -14,14 +14,16 @@ public class Enemy : Entity
     protected GameObject HealthBar;
     private void Awake()
     {
-        entity = GameManager.Instance.EnemyDatabase.GetCharacter(0);
+        entity = GameManager.Instance.EnemyDatabase.GetCharacter(GameManager.Instance.stageNumber-1);
+        
     }
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().sprite = entity.sprite;
         health=entity.health*GameManager.Instance.roundNumber*GameManager.Instance.stageNumber;
         GameManager.Instance.AddEnemyToList(gameObject);
-        rb = GetComponent<Rigidbody2D>();
+        
     }
     private void Update()
     {
@@ -30,7 +32,7 @@ public class Enemy : Entity
         if (hit)
         {
             if (hit.collider.CompareTag("Player")) {
-                if (Time.time - lastfired > 1 / entity.weapon.fireRate)
+                if (Time.time - lastfired > 5 / entity.weapon.fireRate)
                 {
                     Fire();
                 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 608794c8c4cae64489e880d5044b8b45, type: 3}
-  m_Name: BigJohn
+  m_Name: LittleJohn
   m_EditorClassIdentifier: 
   entityType: 1
   health: 10
-  sprite: {fileID: 21300000, guid: 8a8e4e4cb1554a34aa2ddb1bc859264e, type: 3}
-  weapon: {fileID: 11400000, guid: b36919c5c5b61ed4e8b94ccfad215302, type: 2}
+  sprite: {fileID: 21300000, guid: fb24151295813ed4898c656bdd42363d, type: 3}
+  weapon: {fileID: 11400000, guid: 174ac44444b958c4a8603a87ceda43c6, type: 2}
   heavyweapon: {fileID: 11400000, guid: b36919c5c5b61ed4e8b94ccfad215302, type: 2}
-  characterName: Big John
+  characterName: Little John

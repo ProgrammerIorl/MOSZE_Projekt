@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject Boss;
     public Dictionary<int, int> upgrades = new()
     {
+        
         { 0, 1},
         { 1, 1},
         { 2, 1}
@@ -77,7 +78,6 @@ public class GameManager : MonoBehaviour
     public void Upgrade(int id)
     {
         int coinsAfterUpgrade = 5 * timesUpgraded * stageNumber;
-        Debug.Log("Upgraded: " + id);
         upgrades[id] += 1;
         if (coinNumber - coinsAfterUpgrade > 0)
         {
@@ -109,9 +109,8 @@ public class GameManager : MonoBehaviour
         if (enemies.Count == 0 && roundNumber <= 4)
         {
             isRoundEnded = true;
+            
         }
-
-
 
     }
     public void AddEnemyToList(GameObject gameObject)
@@ -120,13 +119,23 @@ public class GameManager : MonoBehaviour
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        NextRound();
+        if (scene.name!="MainMenu")
+        {
+            roundNumber = 0;
+            NextRound();
+        }
+        
+    }
+    public void MainMenuLoadScene() 
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     public void StageEnd()
     {
 
         if (stageNumber == 4)
         {
+            
             Endgame();
         }
         else
@@ -136,6 +145,7 @@ public class GameManager : MonoBehaviour
 
 
     }
+
     public void Wait()
     {
         StageEndScreen.SetActive(true);
@@ -144,30 +154,22 @@ public class GameManager : MonoBehaviour
 
     public void NextRound()
     {
-
         roundNumber++;
         SpawnPoint = GameObject.Find("SpawnPoint");
         RoundEnemy = EnemyDatabase.GetCharacter(roundNumber - 1);
         SpawnEnemies();
         isRoundEnded = false;
-
     }
     public void NextStage()
     {
-
-
-
         StageEndScreen.SetActive(false);
         Time.timeScale = 1.0f;
         stageNumber++;
         roundNumber = 0;
         isRoundEnded = false;
-        SceneManager.LoadScene("Stage" + stageNumber);
         EnemyDatabase = enemyDatabases[stageNumber - 1];
+        SceneManager.LoadScene("Stage" + stageNumber);
         SaveByXML();
-
-
-
     }
     public void StartNewGame()
     {
@@ -175,6 +177,12 @@ public class GameManager : MonoBehaviour
         stageNumber++;
         roundNumber = 0;
         coinNumber = 0;
+        for (int i = 0; i < upgrades.Count; i++)
+        {
+            upgrades[i] = 1;
+        }
+        timesUpgraded = 0;
+        EventManagerCoinCounterChange();
         SceneManager.LoadScene("Stage" + stageNumber);
         EnemyDatabase = enemyDatabases[stageNumber - 1];
         SaveByXML();
@@ -287,7 +295,7 @@ public class GameManager : MonoBehaviour
     }
     public void Endgame()
     {
-
+        CoinCounter.SetActive(false);
         EventManager.OnGameEnd();
 
 

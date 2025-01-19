@@ -15,6 +15,7 @@ public class Boss : Enemy
         GetComponent<Boss>().health = entity.health * GameManager.Instance.stageNumber * GameManager.Instance.roundNumber * 10;
         GameManager.Instance.AddEnemyToList(gameObject);
         rb = GetComponent<Rigidbody2D>();
+        GetComponent<SpriteRenderer>().sprite = entity.sprite;
     }
     private void Update()
     {

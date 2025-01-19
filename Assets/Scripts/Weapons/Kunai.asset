@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7b283b76142dfe49911b7d3bf9dbf43, type: 3}
-  m_Name: Stake
+  m_Name: Kunai
   m_EditorClassIdentifier: 
   damage: 5
   projectileSpeed: 5
   fireRate: 10
-  sprite: {fileID: 21300000, guid: d353e2da8169a7940ae002fa348b83ff, type: 3}
+  sprite: {fileID: 21300000, guid: ebc0a19dd081abb44beb59d51c55096b, type: 3}
