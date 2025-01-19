@@ -82,6 +82,10 @@ public class Enemy : Entity
         GameManager.Instance.RemoveEnemyFromList(gameObject);
         Destroy(gameObject);
     }
+    private void OnDisable()
+    {
+        GameManager.Instance.RemoveEnemyFromList(gameObject);
+    }
     protected void WeaponDataSet(GameObject clone) 
     {
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;

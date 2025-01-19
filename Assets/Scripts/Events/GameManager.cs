@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject Boss;
     public bool isPaused = false;
     public bool isRoundEnded = false;
+    public bool isDead = false;
     public CharacterDatabase EnemyDatabase;
     public int stageNumber = 0;
     public int roundNumber = 0;
@@ -43,8 +44,7 @@ public class GameManager : MonoBehaviour
         EventManager.StageEnd += StageEnd;
         EventManager.CoinCollected += EventManagerCoinAdd;
         EventManager.CoinCollected += EventManagerCoinCounterChange;
-        EventManager.Death += EventManagerDeath;
-
+        EventManager.Death += EventManagerDead;
     }
 
     private void OnDisable()
@@ -54,7 +54,11 @@ public class GameManager : MonoBehaviour
         EventManager.StageEnd -= StageEnd;
         EventManager.CoinCollected -= EventManagerCoinAdd;
         EventManager.CoinCollected -= EventManagerCoinCounterChange;
-        EventManager.Death -= EventManagerDeath;
+        EventManager.Death -= EventManagerDead;
+    }
+   void  EventManagerDead() 
+    {
+        isDead = true;
     }
     private void Awake()
     {
@@ -74,10 +78,7 @@ public class GameManager : MonoBehaviour
     {
         CoinCounter.GetComponent<TextMeshProUGUI>().text = coinNumber.ToString();
     }
-    public void EventManagerDeath()
-    {
-        enemies = null;
-}
+    
     public void EventManagerCoinAdd()
     {
         GameManager.Instance.coinNumber += 1 * roundNumber * stageNumber;
@@ -156,7 +157,12 @@ public class GameManager : MonoBehaviour
 
     public void Wait()
     {
-        StageEndScreen.SetActive(true);
+        if (!isDead)
+        {
+           
+            StageEndScreen.SetActive(true);
+        }
+        
         Time.timeScale = 0.0f;
     }
 
@@ -187,6 +193,7 @@ public class GameManager : MonoBehaviour
         stageNumber++;
         roundNumber = 0;
         coinNumber = 0;
+        isDead = false;
         for (int i = 0; i < upgrades.Count; i++)
         {
             upgrades[i] = 1;

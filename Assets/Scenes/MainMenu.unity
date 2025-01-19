@@ -2732,6 +2732,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1821996931}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1044244351}
         m_TargetAssemblyTypeName: GameManager, Game
         m_MethodName: MainMenuLoadScene
@@ -3022,10 +3034,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 597837846}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1044244351}
+        m_TargetAssemblyTypeName: GameManager, Game
+        m_MethodName: MainMenuLoadScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3034,10 +3046,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1044244351}
-        m_TargetAssemblyTypeName: GameManager, Game
-        m_MethodName: MainMenuLoadScene
-        m_Mode: 1
+      - m_Target: {fileID: 597837846}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3498,6 +3510,7 @@ MonoBehaviour:
   Boss: {fileID: 3763653308587535819, guid: e132a910f03543c4dac8256f25de081b, type: 3}
   isPaused: 0
   isRoundEnded: 0
+  isDead: 0
   EnemyDatabase: {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
   stageNumber: 0
   roundNumber: 0

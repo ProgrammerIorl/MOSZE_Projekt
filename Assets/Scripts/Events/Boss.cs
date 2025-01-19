@@ -55,6 +55,7 @@ public class Boss : Enemy
     {
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;
         clone.GetComponent<Weapon>().entity = entity;
+        clone.GetComponent<Weapon>().damage = entity.weapon.damage * GameManager.Instance.stageNumber;
         clone.transform.localScale = new Vector2(3, 3);
 
     }

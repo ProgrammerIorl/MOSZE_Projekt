@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LittleJohn
   m_EditorClassIdentifier: 
   entityType: 1
-  health: 10
+  health: 100
   sprite: {fileID: 21300000, guid: fb24151295813ed4898c656bdd42363d, type: 3}
   weapon: {fileID: 11400000, guid: 174ac44444b958c4a8603a87ceda43c6, type: 2}
   heavyweapon: {fileID: 11400000, guid: b36919c5c5b61ed4e8b94ccfad215302, type: 2}

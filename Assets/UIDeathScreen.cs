@@ -1,35 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIDeathScreen : MonoBehaviour
 {
-    public static bool isDeath;
-    private void OnEnable()
-    {
-        // Feliratkozás az eseményre
-        EventManager.Death += EventDeathScreen;
 
-
-    }
     private void Start()
     {
+        EventManager.Death += ShowDeathScreen;
         gameObject.SetActive(false);
     }
 
-    private void OnDisable()
+    private void ShowDeathScreen()
     {
-        if (isDeath)
-        {
-            EventManager.Death -= EventDeathScreen;
-
-        }
-
-    }
-
-    
-    void EventDeathScreen() 
-    { 
-        gameObject.SetActive(true);    
+        // Display the death screen.
+        gameObject.SetActive(true);
     }
 }
