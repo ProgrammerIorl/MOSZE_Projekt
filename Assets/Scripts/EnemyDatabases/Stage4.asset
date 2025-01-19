@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage4
   m_EditorClassIdentifier: 
   character:
-  - {fileID: 11400000, guid: 802c514a8c4417641b601fec86cb841d, type: 2}
-  - {fileID: 11400000, guid: 802c514a8c4417641b601fec86cb841d, type: 2}
-  - {fileID: 11400000, guid: 802c514a8c4417641b601fec86cb841d, type: 2}
-  - {fileID: 11400000, guid: 802c514a8c4417641b601fec86cb841d, type: 2}
+  - {fileID: 11400000, guid: 5d8139cbff3f99245886e9e4a333d126, type: 2}
+  - {fileID: 11400000, guid: 5d8139cbff3f99245886e9e4a333d126, type: 2}
+  - {fileID: 11400000, guid: 5d8139cbff3f99245886e9e4a333d126, type: 2}
+  - {fileID: 11400000, guid: 5d8139cbff3f99245886e9e4a333d126, type: 2}

@@ -1,8 +1,8 @@
 <Save FileName="File_01">
-  <coinNumberElement>0</coinNumberElement>
-  <stageNumberElement>1</stageNumberElement>
+  <coinNumberElement>27</coinNumberElement>
+  <stageNumberElement>3</stageNumberElement>
   <characterNumberElement>0</characterNumberElement>
-  <upgradesDamageElement>1</upgradesDamageElement>
-  <upgradesAttackSpeedElement>1</upgradesAttackSpeedElement>
-  <upgradesPSpeedElement>1</upgradesPSpeedElement>
+  <upgradesDamageElement>4</upgradesDamageElement>
+  <upgradesAttackSpeedElement>3</upgradesAttackSpeedElement>
+  <upgradesPSpeedElement>2</upgradesPSpeedElement>
 </Save>

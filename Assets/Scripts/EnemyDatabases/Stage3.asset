@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage3
   m_EditorClassIdentifier: 
   character:
-  - {fileID: 11400000, guid: 802c514a8c4417641b601fec86cb841d, type: 2}
-  - {fileID: 11400000, guid: 802c514a8c4417641b601fec86cb841d, type: 2}
-  - {fileID: 11400000, guid: 802c514a8c4417641b601fec86cb841d, type: 2}
-  - {fileID: 11400000, guid: 802c514a8c4417641b601fec86cb841d, type: 2}
+  - {fileID: 11400000, guid: db2c56d8861446b47a40263c54bf36b3, type: 2}
+  - {fileID: 11400000, guid: db2c56d8861446b47a40263c54bf36b3, type: 2}
+  - {fileID: 11400000, guid: db2c56d8861446b47a40263c54bf36b3, type: 2}
+  - {fileID: 11400000, guid: db2c56d8861446b47a40263c54bf36b3, type: 2}

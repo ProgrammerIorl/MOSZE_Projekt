@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
     public bool isRoundEnded = false;
     public bool isDead = false;
+    public bool isEnd = false;
     public CharacterDatabase EnemyDatabase;
     public int stageNumber = 0;
     public int roundNumber = 0;
@@ -194,6 +195,7 @@ public class GameManager : MonoBehaviour
         roundNumber = 0;
         coinNumber = 0;
         isDead = false;
+        isEnd = false;
         for (int i = 0; i < upgrades.Count; i++)
         {
             upgrades[i] = 1;
@@ -285,7 +287,7 @@ public class GameManager : MonoBehaviour
             XmlNodeList upgradesPSpeedElement = xmlDocument.GetElementsByTagName("upgradesPSpeedElement");
             int upgradesPSpeed = int.Parse(upgradesPSpeedElement[0].InnerText);
             upgrades[2] = upgradesPSpeed;
-
+            isDead = false;
             SceneManager.LoadScene("Stage" + GameManager.Instance.stageNumber);
             Time.timeScale = 1.0f;
         }
@@ -337,6 +339,7 @@ public class GameManager : MonoBehaviour
     public void Endgame()
     {
         CoinCounter.SetActive(false);
+        isEnd = true;
         EventManager.OnGameEnd();
         
 

@@ -21,15 +21,6 @@ public class UIEndGame : MonoBehaviour
     {
         // Leiratkozás az eseményrõl, hogy elkerüljük a memóriaszivárgást
     }
-    private void OnDisable()
-    {
-        if (isGameOver)
-        {
-            EventManager.GameEnd -= UIEventManagerGameEnd;
-
-        }
-
-    }
 
     private void UIEventManagerGameEnd()
     {
