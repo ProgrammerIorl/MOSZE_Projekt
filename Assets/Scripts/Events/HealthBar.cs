@@ -7,17 +7,17 @@ public class HealthBar : MonoBehaviour
 {
 
     Image image;
-    Entity enemy;
+    Entity entity;
     float maxHealth;
     private void Start()
     {
         image = GetComponent<Image>();
-        enemy = GetComponentInParent<Entity>();
-        maxHealth=enemy.health;
+        entity = GetComponentInParent<Entity>();
+        maxHealth = entity.health;
     }
     // Update is called once per frame
     void Update()
     {
-        image.fillAmount = enemy.health / maxHealth;
+        image.fillAmount = entity.health / maxHealth;
     }
 }

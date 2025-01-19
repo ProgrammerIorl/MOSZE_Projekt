@@ -37,6 +37,7 @@ public class InputManager : Entity
         }
         PlayerInput = new PlayerInput();
         entity = CharacterManager.Instance.characterDatabase.GetCharacter(CharacterManager.Instance.selectedOption);
+        health = entity.health;
     }
 
     private void Start()
@@ -45,7 +46,7 @@ public class InputManager : Entity
         cameraTransform = Camera.main.transform;
         lastfired = 0;
         GetComponent<SpriteRenderer>().sprite=entity.sprite;
-        health=entity.health;
+        
         
     }
     private void OnTriggerEnter2D(Collider2D collider)
@@ -58,6 +59,7 @@ public class InputManager : Entity
                 EventManager.OnCoinCollected();
                 Destroy(collider.gameObject);
             }
+
         }
     }
 
@@ -72,9 +74,12 @@ public class InputManager : Entity
             LightShoot();
             HeavyShoot();
         }
-        
-        
-        
+        if (health<=0)
+        {
+            EventManager.OnDeath();
+        }
+
+
     }
     private void FixedUpdate()
     {
@@ -88,10 +93,16 @@ public class InputManager : Entity
     private void OnEnable()
     {
         PlayerInput.Enable();
+        EventManager.Death += EventDeath;
     }
     private void OnDisable()
     {
         PlayerInput.Disable();
+        EventManager.Death -= EventDeath;
+    }
+    public void EventDeath() 
+    {
+        Time.timeScale = 0;
     }
     public Vector2 GetPlayerInput()
     {

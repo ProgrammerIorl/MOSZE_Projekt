@@ -8,23 +8,23 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     public GameObject coin;
     public GameObject WeaponGameObject;
     public GameObject Enemy;
     public GameObject SpawnPoint;
-    public static GameManager Instance;
+    public GameObject InGameMenu;
+    public GameObject StageEndScreen;
+    public GameObject CoinCounter;
+    public GameObject Boss;
+    public bool isPaused = false;
+    public bool isRoundEnded = false;
     public CharacterDatabase EnemyDatabase;
     public int stageNumber = 0;
     public int roundNumber = 0;
     public int coinNumber = 0;
     public int timesUpgraded = 0;
     public EntityScriptableObject RoundEnemy;
-    public bool isPaused = false;
-    public bool isRoundEnded = false;
-    public GameObject InGameMenu;
-    public GameObject StageEndScreen;
-    public GameObject CoinCounter;
-    public GameObject Boss;
     public Dictionary<int, int> upgrades = new()
     {
         
@@ -43,14 +43,18 @@ public class GameManager : MonoBehaviour
         EventManager.StageEnd += StageEnd;
         EventManager.CoinCollected += EventManagerCoinAdd;
         EventManager.CoinCollected += EventManagerCoinCounterChange;
+        EventManager.Death += EventManagerDeath;
 
     }
 
     private void OnDisable()
     {
         EventManager.Pause -= PauseResume;
-        EventManager.CoinCollected -= EventManagerCoinCounterChange;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        EventManager.StageEnd -= StageEnd;
         EventManager.CoinCollected -= EventManagerCoinAdd;
+        EventManager.CoinCollected -= EventManagerCoinCounterChange;
+        EventManager.Death -= EventManagerDeath;
     }
     private void Awake()
     {
@@ -70,6 +74,10 @@ public class GameManager : MonoBehaviour
     {
         CoinCounter.GetComponent<TextMeshProUGUI>().text = coinNumber.ToString();
     }
+    public void EventManagerDeath()
+    {
+        enemies = null;
+}
     public void EventManagerCoinAdd()
     {
         GameManager.Instance.coinNumber += 1 * roundNumber * stageNumber;
@@ -162,6 +170,7 @@ public class GameManager : MonoBehaviour
     }
     public void NextStage()
     {
+        SaveByXML();
         StageEndScreen.SetActive(false);
         Time.timeScale = 1.0f;
         stageNumber++;
@@ -169,10 +178,11 @@ public class GameManager : MonoBehaviour
         isRoundEnded = false;
         EnemyDatabase = enemyDatabases[stageNumber - 1];
         SceneManager.LoadScene("Stage" + stageNumber);
-        SaveByXML();
+        
     }
     public void StartNewGame()
     {
+        Time.timeScale = 1.0f;
         stageNumber = 0;
         stageNumber++;
         roundNumber = 0;
@@ -232,7 +242,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
-
+   
 
     public void LoadByXML()
     {
@@ -255,9 +265,22 @@ public class GameManager : MonoBehaviour
             XmlNodeList stageNumberElement = xmlDocument.GetElementsByTagName("stageNumberElement");
             int stageNumber = int.Parse(stageNumberElement[0].InnerText);
             GameManager.Instance.stageNumber = stageNumber;
-            GameManager.Instance.EnemyDatabase = GameManager.Instance.enemyDatabases[stageNumber];
+            GameManager.Instance.EnemyDatabase = GameManager.Instance.enemyDatabases[stageNumber-1];
+
+            XmlNodeList upgradesDamageElement = xmlDocument.GetElementsByTagName("upgradesDamageElement");
+            int upgradesDamage = int.Parse(upgradesDamageElement[0].InnerText);
+            upgrades[0] = upgradesDamage;
+
+            XmlNodeList upgradesAttackSpeedElement = xmlDocument.GetElementsByTagName("upgradesAttackSpeedElement");
+            int upgradesAttackSpeed = int.Parse(upgradesAttackSpeedElement[0].InnerText);
+            upgrades[1] = upgradesAttackSpeed;
+
+            XmlNodeList upgradesPSpeedElement = xmlDocument.GetElementsByTagName("upgradesPSpeedElement");
+            int upgradesPSpeed = int.Parse(upgradesPSpeedElement[0].InnerText);
+            upgrades[2] = upgradesPSpeed;
 
             SceneManager.LoadScene("Stage" + GameManager.Instance.stageNumber);
+            Time.timeScale = 1.0f;
         }
 
     }
@@ -282,6 +305,17 @@ public class GameManager : MonoBehaviour
         characterNumberElement.InnerText = CharacterManager.Instance.selectedOption.ToString();
         root.AppendChild(characterNumberElement);
 
+        XmlElement upgradesDamageElement = xmlDocument.CreateElement("upgradesDamageElement");
+        upgradesDamageElement.InnerText = upgrades[0].ToString();
+        root.AppendChild(upgradesDamageElement);
+
+        XmlElement upgradesAttackSpeedElement = xmlDocument.CreateElement("upgradesAttackSpeedElement");
+        upgradesAttackSpeedElement.InnerText = upgrades[1].ToString();
+        root.AppendChild(upgradesAttackSpeedElement);
+
+        XmlElement upgradesPSpeedElement = xmlDocument.CreateElement("upgradesPSpeedElement");
+        upgradesPSpeedElement.InnerText = upgrades[2].ToString();
+        root.AppendChild(upgradesPSpeedElement);
         //OPTIONAL ADVANCED
 
 
@@ -297,7 +331,7 @@ public class GameManager : MonoBehaviour
     {
         CoinCounter.SetActive(false);
         EventManager.OnGameEnd();
-
+        
 
 
     }

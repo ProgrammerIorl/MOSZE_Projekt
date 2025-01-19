@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608794c8c4cae64489e880d5044b8b45, type: 3}
   m_Name: IndianaJones
   m_EditorClassIdentifier: 
-  entityType: 0
-  health: 0
+  entityType: 1
+  health: 10
   sprite: {fileID: 21300000, guid: 5c76912a92894454b9771347c40179bf, type: 3}
   weapon: {fileID: 11400000, guid: 3cbdab3d3acaa154ebd46251cd1ce9fc, type: 2}
   heavyweapon: {fileID: 11400000, guid: b36919c5c5b61ed4e8b94ccfad215302, type: 2}

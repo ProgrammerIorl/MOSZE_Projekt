@@ -14,18 +14,21 @@ public class Weapon : MonoBehaviour
     {
         if (collision.TryGetComponent<Entity>(out var collisionEntity)) 
         {
-            if (collisionEntity.entity.entityType == EntityScriptableObject.EntityType.Player && entity.entityType== EntityScriptableObject.EntityType.Enemy)
+            if (collisionEntity.entity.entityType == EntityScriptableObject.EntityType.Player && entity.entityType == EntityScriptableObject.EntityType.Enemy)
             {
+                Debug.Log("Hit PLAYER!!!");
                 collisionEntity.health -= damage;
                 Destroy(gameObject);
             }
             if (collisionEntity.entity.entityType == EntityScriptableObject.EntityType.Enemy && entity.entityType == EntityScriptableObject.EntityType.Player)
             {
+                Debug.Log("Hit ENEMY!!!");
                 collisionEntity.health -= damage;
                 Destroy(gameObject);
             }
             if (collisionEntity.entity.entityType ==  EntityScriptableObject.EntityType.Wall) 
             {
+                Debug.Log("Hit WALL!!!");
                 Destroy(gameObject);
             }
         }

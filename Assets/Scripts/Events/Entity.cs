@@ -10,5 +10,5 @@ public class Entity : MonoBehaviour
 
     public EntityScriptableObject entity;
     public float health;
-   
+
 }

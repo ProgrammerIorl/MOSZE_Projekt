@@ -86,6 +86,7 @@ public class Enemy : Entity
     {
         clone.GetComponent<SpriteRenderer>().sprite = entity.weapon.sprite;
         clone.GetComponent<Weapon>().entity = entity;
+        clone.GetComponent<Weapon>().damage = entity.weapon.damage*GameManager.Instance.stageNumber;
     }
     protected void ProjectileShoot(GameObject clone)
     {

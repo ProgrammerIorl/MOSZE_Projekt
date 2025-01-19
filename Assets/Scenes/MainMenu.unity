@@ -1555,13 +1555,14 @@ GameObject:
   - component: {fileID: 597837847}
   - component: {fileID: 597837849}
   - component: {fileID: 597837848}
+  - component: {fileID: 597837850}
   m_Layer: 5
   m_Name: DeathScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &597837847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1622,6 +1623,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597837846}
   m_CullTransparentMesh: 1
+--- !u!114 &597837850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597837846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05453c167026a0b4389a9f2699da6793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &613236283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,10 +2732,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1821996931}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1044244351}
+        m_TargetAssemblyTypeName: GameManager, Game
+        m_MethodName: MainMenuLoadScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2997,10 +3010,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1044244351}
-        m_TargetAssemblyTypeName: GameManager, Game
-        m_MethodName: LoadByXML
-        m_Mode: 1
+      - m_Target: {fileID: 1821996931}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 597837846}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3009,10 +3034,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 597837846}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1044244351}
+        m_TargetAssemblyTypeName: GameManager, Game
+        m_MethodName: MainMenuLoadScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3209,6 +3234,7 @@ GameObject:
   - component: {fileID: 1038370335}
   - component: {fileID: 1038370334}
   - component: {fileID: 1038370336}
+  - component: {fileID: 1038370337}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3244,7 +3270,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1044244352}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1038370336
 MonoBehaviour:
@@ -3276,6 +3302,18 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &1038370337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038370332}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1dffaa737c718488b3315eaf98d287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1041320410
 GameObject:
   m_ObjectHideFlags: 0
@@ -3454,18 +3492,18 @@ MonoBehaviour:
   WeaponGameObject: {fileID: 1636049267473397023, guid: 3e8261fabf48efa459d332670ab068e0, type: 3}
   Enemy: {fileID: 795612548349319606, guid: f0fbee8ca21570b40914a87485b1d6ea, type: 3}
   SpawnPoint: {fileID: 0}
+  InGameMenu: {fileID: 1236278888}
+  StageEndScreen: {fileID: 1980344893}
+  CoinCounter: {fileID: 1437939212}
+  Boss: {fileID: 3763653308587535819, guid: e132a910f03543c4dac8256f25de081b, type: 3}
+  isPaused: 0
+  isRoundEnded: 0
   EnemyDatabase: {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
   stageNumber: 0
   roundNumber: 0
   coinNumber: 0
   timesUpgraded: 0
   RoundEnemy: {fileID: 0}
-  isPaused: 0
-  isRoundEnded: 0
-  InGameMenu: {fileID: 1236278888}
-  StageEndScreen: {fileID: 1980344893}
-  CoinCounter: {fileID: 1437939212}
-  Boss: {fileID: 3763653308587535819, guid: e132a910f03543c4dac8256f25de081b, type: 3}
   enemies: []
   enemyDatabases:
   - {fileID: 11400000, guid: 0a7f591683a3e4a42b43a32198279785, type: 2}
@@ -3486,7 +3524,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 861129498}
-  - {fileID: 1038370335}
   - {fileID: 1384417561}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6981,4 +7018,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1463163457}
   - {fileID: 1536539197}
+  - {fileID: 1038370335}
   - {fileID: 1044244352}
