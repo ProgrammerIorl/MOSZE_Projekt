@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608794c8c4cae64489e880d5044b8b45, type: 3}
+  m_Name: BigJohn
+  m_EditorClassIdentifier: 
+  entityType: 1
+  health: 10
+  sprite: {fileID: 21300000, guid: 8a8e4e4cb1554a34aa2ddb1bc859264e, type: 3}
+  weapon: {fileID: 11400000, guid: 7f4da5141c2b1bd40b6b2abb95f78f37, type: 2}
+  heavyweapon: {fileID: 11400000, guid: b36919c5c5b61ed4e8b94ccfad215302, type: 2}
+  characterName: Big John
